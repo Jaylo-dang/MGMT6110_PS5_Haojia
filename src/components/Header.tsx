@@ -57,12 +57,12 @@ export const Header: React.FC<HeaderProps> = ({
             News Synthesizer (Task 3)
           </button>
           <button
-            onClick={() => onSelectTab('property_translation')}
+            onClick={() => onSelectTab('internship_alerts')}
             className={`cursor-pointer whitespace-nowrap shrink-0 transition-colors ${
-              currentTab === 'property_translation' ? 'text-teal-700 font-semibold' : 'hover:text-slate-900'
+              currentTab === 'internship_alerts' ? 'text-teal-700 font-semibold' : 'hover:text-slate-900'
             }`}
           >
-            Property Pipeline (Task 4)
+            Internship Alerts (Task 4)
           </button>
         </nav>
 

@@ -1,4 +1,4 @@
-import { TaskItem, EmailItem, NotificationItem, NewsArticle, PropertyListing } from '../types';
+import { TaskItem, EmailItem, NotificationItem, NewsArticle, InternshipAlert } from '../types';
 
 export const INITIAL_TASKS: TaskItem[] = [
   {
@@ -49,17 +49,17 @@ export const INITIAL_TASKS: TaskItem[] = [
   {
     id: 'task-4',
     number: 4,
-    title: 'Property Data Multi-Language Translation & Dispatch',
-    subtitle: 'Translate technical real estate records into target languages and email final summary reports',
+    title: 'Internship Alerts on Mail',
+    subtitle: 'Track openings across company portals, verify eligibility matches, and dispatch email alerts',
     quadrantId: 'alone_right_answer',
-    category: 'property',
-    tags: ['Multilingual Translation', 'Automated Emailer', 'Structured Data'],
+    category: 'internship',
+    tags: ['Internship Alerts', 'Automated Emailer', 'Eligibility Matching'],
     archetype: 'AI alone',
-    whyAnswer: 'Real estate metrics (zoning codes, square footage, amenities, pricing) and localization terminology have strict, verifiable right answers.',
-    whyInterdependence: 'Once schemas and target languages are configured, an autonomous AI pipeline can translate, assemble HTML digests, and dispatch via email without human-in-the-loop bottlenecks.',
-    humanRole: 'Initial pipeline configuration and recipient list setup.',
-    aiRole: 'Autonomous end-to-end execution: ingests property database, validates translations, compiles executive summaries, and triggers SMTP email dispatch.',
-    workspaceKey: 'property_translation',
+    whyAnswer: 'Internship requirements (graduation year, major, GPA threshold, technical skill keywords, application deadlines, and visa eligibility) are deterministic criteria with verifiable right answers.',
+    whyInterdependence: 'Once student criteria and target companies are configured, an autonomous AI pipeline can continuously scrape job portals, verify eligibility, format summaries, and dispatch email alerts directly to the user inbox without manual human bottlenecks.',
+    humanRole: 'Initial criteria configuration (major, graduation date, desired roles, notification email).',
+    aiRole: 'Autonomous end-to-end execution: scrapes career portals, computes eligibility matches, compiles alert digests, and triggers automated SMTP email delivery.',
+    workspaceKey: 'internship_alerts',
   },
   {
     id: 'task-5',
@@ -269,53 +269,97 @@ export const INITIAL_NEWS: NewsArticle[] = [
   }
 ];
 
-export const INITIAL_PROPERTIES: PropertyListing[] = [
+export const INITIAL_INTERNSHIPS: InternshipAlert[] = [
   {
-    id: 'prop-1',
-    code: 'PROP-702-DOWNTOWN',
-    propertyName: 'The Lumina Executive Penthouse & Commercial Office Suite',
-    location: '450 Grand Avenue, Financial District',
-    price: '$3,450,000 USD (€3,180,000 / ¥24,800,000)',
-    specs: {
-      areaSqFt: 4250,
-      bedrooms: 4,
-      bathrooms: 4.5,
-      zoning: 'Mixed-Use Commercial / Residential Class A',
-      yearBuilt: 2024,
+    id: 'intern-1',
+    company: 'Google',
+    roleTitle: 'Software Engineering Summer Intern 2027',
+    location: 'Mountain View, CA / Hybrid',
+    stipend: '$56 - $64 / hr + Housing Stipend',
+    deadline: 'October 31, 2026',
+    sourcePortal: 'Google Careers (Global Portal)',
+    eligibilityMatch: {
+      gpaMatch: true,
+      majorMatch: true,
+      gradYearMatch: true,
+      overallScore: 98,
     },
-    descriptionEn: 'Prime high-floor luxury penthouse with direct elevator access, LEED Gold certification, seismic dampening, and integrated smart building climate controls. Includes 3 dedicated underground EV charging bays and deeded private rooftop terrace with 360-degree skyline views.',
-    translations: {
-      es: 'Ático de lujo en planta alta con acceso directo por ascensor, certificación LEED Gold, amortiguación sísmica y climatización inteligente. Incluye 3 plazas de aparcamiento subterráneo con carga EV y terraza privada en azotea con vistas panorámicas.',
-      zh: '尊荣高层豪华顶层公寓，配备专属直达电梯、LEED金级绿色建筑认证、抗震阻尼系统及智能楼宇恒温控制。附带3个地下专属新能源充电车位，以及360度全景私人屋顶露台。',
-      fr: 'Penthouse de prestige en étage élevé avec accès direct par ascenseur, certification LEED Gold, isolation sismique et domotique climatique. Comprend 3 places de parking souterrain avec bornes VE et terrasse privée sur le toit avec vue panoramique.',
-      de: 'Exklusives Penthouse in oberster Etage mit privatem Aufzugszugang, LEED Gold-Zertifizierung, Erdbebendämpfung und intelligenter Klimasteuerung. Enthält 3 Tiefgaragenstellplätze mit EV-Ladestationen und private Dachterrasse mit 360-Grad-Panoramablick.',
-      ja: '専用エレベーター直結のプレミアム高層ペントハウス。LEEDゴールド認証、制震ダンパー、スマートビル空調システムを完備。EV充電器付き地下駐車場3台分および360度スカイラインを望む専用ルーフトップテラス付き。',
-    },
-    status: 'dispatched',
-    dispatchedTo: 'investor-syndicate-asia-europe@capital.com',
-    dispatchedAt: 'Today, 09:14 AM via Automated SMTP Node',
+    requirements: [
+      'Pursuing BS, MS, or PhD in Computer Science or related STEM field',
+      'Graduation date between Dec 2027 and June 2028',
+      'Proficiency in C++, Java, Python, or Go',
+      'Foundations in data structures and distributed algorithms'
+    ],
+    roleSummary: 'Join core product infrastructure, developer tools, or AI systems teams to build scalable software utilized by billions globally.',
+    status: 'emailed',
+    dispatchedTo: 'shantanu281098@gmail.com',
+    dispatchedAt: 'Today, 07:45 AM via Autonomous Alert Node',
   },
   {
-    id: 'prop-2',
-    code: 'PROP-318-HARBOR',
-    propertyName: 'Waterfront Logistics & Cold Storage Facility',
-    location: '120 Maritime Boulevard, Terminal 4',
-    price: '$8,900,000 USD (€8,220,000 / ¥63,500,000)',
-    specs: {
-      areaSqFt: 38000,
-      bedrooms: 0,
-      bathrooms: 6,
-      zoning: 'Industrial Logistics Heavy M-2',
-      yearBuilt: 2022,
+    id: 'intern-2',
+    company: 'Jane Street',
+    roleTitle: 'Quantitative Research & Software Engineering Intern',
+    location: 'New York, NY / London',
+    stipend: '$75 / hr + Relocation & Housing',
+    deadline: 'November 15, 2026',
+    sourcePortal: 'Jane Street Campus Portal',
+    eligibilityMatch: {
+      gpaMatch: true,
+      majorMatch: true,
+      gradYearMatch: true,
+      overallScore: 95,
     },
-    descriptionEn: 'Deep-water port adjacent industrial logistics hub featuring dual climate multi-zone temperature storage (-20°C to +4°C), 32-foot clear ceiling heights, 12 dock-high loading doors, and automated fire suppression system.',
-    translations: {
-      es: 'Centro logístico industrial adyacente a puerto de aguas profundas con almacenamiento multitemperatura (-20°C a +4°C), altura libre de 9.7 metros, 12 muelles de carga y sistema automatizado contra incendios.',
-      zh: '紧邻深水码头的高标准现代工业物流仓储中心，具备双温区多功能冷链冷藏库（-20°C至+4°C），净高9.7米，配置12个高位装卸码头与自动化消防喷淋系统。',
-      fr: 'Hub logistique industriel adjacent au port en eau profonde, comprenant un stockage multi-températures (-20°C à +4°C), hauteur sous plafond de 9,7 m, 12 quais de déchargement et protection incendie automatisée.',
-      de: 'Industrielles Logistikzentrum in Tiefseehafen-Nähe mit Multi-Temperatur-Kühllagerung (-20°C bis +4°C), 9,7 m lichter Deckenhöhe, 12 Überladebrücken und automatisierter Brandmeldeanlage.',
-      ja: '大水深港に隣接する最新鋭産業物流ハブ。マルチ温度帯冷凍冷蔵設備（-20℃〜+4℃）、有効天井高9.7m、12バースのトラックドック、自動消火設備を完備。',
+    requirements: [
+      'Exceptional mathematical, statistical, or functional programming aptitude (OCaml, C++, Python)',
+      'Undergraduate or graduate student graduating 2027/2028',
+      'Strong problem-solving track record under latency constraints'
+    ],
+    roleSummary: 'Build high-performance algorithmic trading infrastructure, model quantitative pricing distributions, and optimize electronic market-making strategies.',
+    status: 'verified',
+    dispatchedTo: 'shantanu281098@gmail.com',
+  },
+  {
+    id: 'intern-3',
+    company: 'OpenAI',
+    roleTitle: 'Applied AI Research & Systems Intern',
+    location: 'San Francisco, CA',
+    stipend: '$65 / hr + Housing & Flight Allowance',
+    deadline: 'Rolling (Closes when filled)',
+    sourcePortal: 'OpenAI Greenhouse Feed',
+    eligibilityMatch: {
+      gpaMatch: true,
+      majorMatch: true,
+      gradYearMatch: true,
+      overallScore: 94,
     },
-    status: 'ready',
+    requirements: [
+      'Experience training or fine-tuning transformer architectures',
+      'Strong software systems foundation with PyTorch, CUDA, or Triton',
+      'Enrolled in University degree program'
+    ],
+    roleSummary: 'Work alongside research scientists and engineers deploying frontier foundation models, agent architectures, and reinforcement learning systems.',
+    status: 'detected',
+  },
+  {
+    id: 'intern-4',
+    company: 'Microsoft',
+    roleTitle: 'Product Management Summer Intern',
+    location: 'Redmond, WA / Sunnyvale, CA',
+    stipend: '$52 - $58 / hr + Housing Subsidy',
+    deadline: 'December 1, 2026',
+    sourcePortal: 'Microsoft University Careers',
+    eligibilityMatch: {
+      gpaMatch: true,
+      majorMatch: true,
+      gradYearMatch: true,
+      overallScore: 91,
+    },
+    requirements: [
+      'Enrolled in Bachelor, Master, or MBA degree with technical coursework',
+      'Demonstrated leadership in product design, feature definition, or campus initiatives',
+      'Strong cross-functional communication and metrics definition'
+    ],
+    roleSummary: 'Define product vision, author technical specifications, and collaborate with engineering teams across Azure Cloud, Office, or Developer division.',
+    status: 'detected',
   },
 ];

@@ -4,7 +4,7 @@ import {
   INITIAL_EMAILS,
   INITIAL_NOTIFICATIONS,
   INITIAL_NEWS,
-  INITIAL_PROPERTIES,
+  INITIAL_INTERNSHIPS,
 } from './data/initialData';
 import { TaskItem } from './types';
 import { Header } from './components/Header';
@@ -13,10 +13,10 @@ import { MatrixView } from './components/MatrixView';
 import { GmailPriorityWorkspace } from './components/workspaces/GmailPriorityWorkspace';
 import { UrgentNotificationsWorkspace } from './components/workspaces/UrgentNotificationsWorkspace';
 import { NewsSummarizerWorkspace } from './components/workspaces/NewsSummarizerWorkspace';
-import { PropertyTranslationWorkspace } from './components/workspaces/PropertyTranslationWorkspace';
+import { InternshipAlertsWorkspace } from './components/workspaces/InternshipAlertsWorkspace';
 import { TaskDetailModal } from './components/TaskDetailModal';
 import { ClassifierModal } from './components/ClassifierModal';
-import { ArrowRight, Sparkles, Mail, MessageSquare, Newspaper, Building2 } from 'lucide-react';
+import { ArrowRight, Sparkles, Mail, MessageSquare, Newspaper, Briefcase } from 'lucide-react';
 
 export default function App() {
   const [tasks, setTasks] = useState<TaskItem[]>(INITIAL_TASKS);
@@ -156,7 +156,7 @@ export default function App() {
 
                 {/* Task 4 Card */}
                 <div
-                  onClick={() => handleOpenWorkspace('property_translation')}
+                  onClick={() => handleOpenWorkspace('internship_alerts')}
                   className="cursor-pointer group border border-slate-200 hover:border-teal-500 rounded-xl p-4 bg-slate-50/50 hover:bg-white transition-all shadow-xs flex flex-col justify-between"
                 >
                   <div>
@@ -164,13 +164,13 @@ export default function App() {
                       <span className="w-6 h-6 rounded-full bg-teal-600 text-white text-xs font-bold flex items-center justify-center">
                         4
                       </span>
-                      <Building2 className="w-4 h-4 text-teal-600" />
+                      <Briefcase className="w-4 h-4 text-teal-600" />
                     </div>
                     <h4 className="text-sm font-bold text-slate-900 group-hover:text-teal-700 mt-2 transition-colors">
-                      Property Pipeline & Dispatch
+                      Internship Alerts on Mail
                     </h4>
                     <p className="text-xs text-slate-500 mt-1 line-clamp-2 leading-relaxed">
-                      Translate technical property specs into 5 languages and auto-dispatch email digests.
+                      Track openings across portals, verify eligibility matches, and dispatch curated alert emails.
                     </p>
                   </div>
                   <div className="mt-3 pt-2 border-t border-slate-200/60 flex items-center justify-between text-xs font-semibold text-teal-700">
@@ -208,9 +208,9 @@ export default function App() {
         )}
 
         {/* Task 4 Workspace View */}
-        {currentTab === 'property_translation' && (
-          <PropertyTranslationWorkspace
-            properties={INITIAL_PROPERTIES}
+        {currentTab === 'internship_alerts' && (
+          <InternshipAlertsWorkspace
+            internships={INITIAL_INTERNSHIPS}
             onBackToMatrix={() => setCurrentTab('matrix')}
           />
         )}

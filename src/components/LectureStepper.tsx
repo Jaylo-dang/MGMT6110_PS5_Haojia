@@ -32,7 +32,7 @@ const STEPS: StepData[] = [
     stepNumber: 4,
     title: 'AI Alone (Autonomous Execution)',
     quadrantFocus: 'alone_right_answer',
-    caption: 'Work with a right answer, and either can do it alone: Task 4 belongs here. Standardized property record translation into multiple languages and automated email dispatch runs autonomously end-to-end without human bottlenecks.',
+    caption: 'Work with a right answer, and either can do it alone: Task 4 belongs here. Tracking internship openings across portals, checking deterministic eligibility criteria, and dispatching email alerts runs autonomously end-to-end without human bottlenecks.',
   },
   {
     stepNumber: 5,

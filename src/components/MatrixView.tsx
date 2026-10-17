@@ -323,7 +323,7 @@ export const MatrixView: React.FC<MatrixViewProps> = ({
                         onClick={() => onOpenWorkspace(task.workspaceKey)}
                         className="cursor-pointer inline-flex items-center gap-1 font-semibold text-teal-700 hover:text-teal-900"
                       >
-                        Launch Pipeline <ArrowRight className="w-3.5 h-3.5" />
+                        Launch Workspace <ArrowRight className="w-3.5 h-3.5" />
                       </button>
                     )}
                   </div>

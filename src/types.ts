@@ -10,14 +10,14 @@ export interface TaskItem {
   title: string;
   subtitle: string;
   quadrantId: QuadrantId;
-  category: 'email' | 'notifications' | 'news' | 'property' | 'strategy' | 'creative' | 'custom';
+  category: 'email' | 'notifications' | 'news' | 'internship' | 'strategy' | 'creative' | 'custom';
   tags: string[];
   archetype: string; // e.g. "A person leads, AI inside"
   whyAnswer: string; // Why it has/doesn't have a right answer
   whyInterdependence: string; // Why together vs alone
   humanRole: string;
   aiRole: string;
-  workspaceKey: 'gmail_priority' | 'urgent_notifications' | 'news_summary' | 'property_translation' | 'general';
+  workspaceKey: 'gmail_priority' | 'urgent_notifications' | 'news_summary' | 'internship_alerts' | 'general';
 }
 
 export interface EmailItem {
@@ -64,22 +64,23 @@ export interface NewsArticle {
   humanJudgmentNote: string;
 }
 
-export interface PropertyListing {
+export interface InternshipAlert {
   id: string;
-  code: string;
-  propertyName: string;
+  company: string;
+  roleTitle: string;
   location: string;
-  price: string;
-  specs: {
-    areaSqFt: number;
-    bedrooms: number;
-    bathrooms: number;
-    zoning: string;
-    yearBuilt: number;
+  stipend: string;
+  deadline: string;
+  sourcePortal: string;
+  eligibilityMatch: {
+    gpaMatch: boolean;
+    majorMatch: boolean;
+    gradYearMatch: boolean;
+    overallScore: number;
   };
-  descriptionEn: string;
-  translations: Record<string, string>; // langCode -> translated description
-  status: 'ready' | 'translated' | 'dispatched';
+  requirements: string[];
+  roleSummary: string;
+  status: 'detected' | 'verified' | 'emailed';
   dispatchedTo?: string;
   dispatchedAt?: string;
 }

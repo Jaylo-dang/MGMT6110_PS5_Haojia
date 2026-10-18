@@ -94,7 +94,7 @@ export const INITIAL_TASKS: TaskItem[] = [
   {
     id: 'task-7',
     number: 7,
-    title: 'SIN–PEK Fare Alert (Haojia, Problem Set 5)',
+    title: 'SIN–PEK Flight Fare Alert',
     subtitle: 'Each morning, find the cheapest Singapore–Beijing round trip across six date pairs and email it to me',
     quadrantId: 'alone_right_answer',
     category: 'custom',

@@ -12,9 +12,155 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+      /* Problem Set 5 section, below the group's app */
+      #ps5 { max-width: 900px; margin: 0 auto; padding: 56px 20px 72px; color: #0f172a; line-height: 1.6; border-top: 1px solid #e2e8f0; }
+      #ps5 .eyebrow { font-size: 0.75rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #0f766e; margin: 0 0 6px; }
+      #ps5 h2 { font-size: 1.6rem; font-weight: 800; margin: 0 0 8px; }
+      #ps5 h3 { font-size: 1.2rem; font-weight: 700; margin: 40px 0 12px; }
+      #ps5 p { margin: 0 0 12px; }
+      #ps5 .lead { color: #475569; }
+      #ps5 ol, #ps5 ul { padding-left: 22px; margin: 0; }
+      #ps5 ol { list-style: decimal; }
+      #ps5 ul { list-style: disc; }
+      #ps5 li { margin: 0 0 8px; }
+      #ps5 .card { background: #fff; border: 1px solid #e2e8f0; border-left: 6px solid #0f766e; border-radius: 12px; padding: 18px 22px; }
+      #ps5 .card .head { font-family: 'JetBrains Mono', monospace; font-weight: 600; font-size: 0.88rem; margin: 0 0 12px; }
+
+      #ps5 .map { display: grid; grid-template-columns: 130px 1fr 1fr; gap: 8px; font-size: 0.9rem; }
+      #ps5 .map .col { text-align: center; font-weight: 700; padding: 6px; }
+      #ps5 .map .row { display: flex; align-items: center; font-weight: 700; }
+      #ps5 .map .cell { border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px 14px; min-height: 96px; }
+      #ps5 .map .purple { background: #faf5ff; }
+      #ps5 .map .blue { background: #f0f9ff; }
+      #ps5 .map .mine { border: 2px solid #0f766e; background: #f0fdfa; }
+      #ps5 .map .name { font-weight: 700; display: block; margin-bottom: 4px; }
+      #ps5 .map .group { color: #64748b; font-size: 0.8rem; display: block; }
+      #ps5 .map .star { color: #0f766e; font-weight: 700; display: block; margin-top: 6px; }
+
+      #ps5 table { width: 100%; border-collapse: collapse; font-size: 0.9rem; margin: 0 0 16px; background: #fff; }
+      #ps5 th, #ps5 td { border: 1px solid #e2e8f0; padding: 8px 10px; text-align: left; vertical-align: top; }
+      #ps5 th { background: #f1f5f9; }
+      #ps5 .fill { background: #fef3c7; padding: 0 4px; border-radius: 4px; }
+      #ps5 .shots { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin: 0 0 16px; }
+      #ps5 figure { margin: 0; background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px; }
+      #ps5 figure img { width: 100%; height: auto; border-radius: 6px; }
+      #ps5 figcaption { font-size: 0.82rem; color: #64748b; margin-top: 6px; }
+      #ps5 figure.missing::before {
+        content: "Screenshot to add"; display: block; padding: 36px 10px; text-align: center; color: #94a3b8;
+        border: 1px dashed #cbd5e1; border-radius: 6px; background: #f8fafc;
+      }
+      #ps5 .box { background: #fff; border: 1px solid #e2e8f0; border-radius: 10px; padding: 12px 16px; margin: 0 0 10px; }
+      #ps5 .box b { display: block; margin-bottom: 4px; }
+      #ps5 .note { color: #64748b; font-size: 0.85rem; margin-top: 32px; }
+
+      @media (max-width: 720px) {
+        #ps5 .map { grid-template-columns: 80px 1fr 1fr; font-size: 0.8rem; }
+        #ps5 .shots { grid-template-columns: 1fr; }
+      }
+    </style>
   </head>
   <body class="bg-slate-50 text-slate-900 font-sans antialiased selection:bg-teal-500 selection:text-white min-h-screen">
     <div id="root"></div>
+
+    <section id="ps5">
+      <p class="eyebrow">Problem Set 5 · Haojia Dang</p>
+      <h2>My agent: SIN–PEK Fare Alert</h2>
+      <p class="lead">Below our group's Week 7 map is my own agent for Problem Set 5, built as a free-plan Zap and placed on the same map.</p>
+
+      <h3>My agent card</h3>
+      <div class="card">
+        <p class="head">My agent card | SIN–PEK Fare Alert | finished 18 Oct 2026, 02:24 SGT</p>
+        <ol>
+          <li><strong>The job:</strong> Each morning it finds the cheapest round-trip economy fare from Singapore to Beijing Capital across six date pairs (leave 21–23 Dec, return 9–10 Jan) and emails it to the traveller, a student booking a winter-break trip, marking ALERT when the fare is below CNY 1,600 or cheaper than the last check.</li>
+          <li><strong>The trigger:</strong> a new row in my Google Sheet "Daily fares", which a Google Apps Script adds at about 9 am Singapore time each day after searching Google Flights through SerpApi.</li>
+          <li><strong>The tools:</strong> Google Sheets (trigger: New Spreadsheet Row) and Email by Zapier (action: Send Outbound Email); upstream, a Google Apps Script calling SerpApi's read-only Google Flights search.</li>
+          <li><strong>It must never:</strong> book, hold or pay for a ticket; no booking or payment app is connected, and its only action is Send Outbound Email to my own address.</li>
+          <li><strong>Where a person checks:</strong> I, the traveller, read each email after the 9 am run, open its Google Flights link to spot-check the cheapest fare, dates and flight before acting on an ALERT, and compare each run with its record in Zap history.</li>
+        </ol>
+      </div>
+
+      <h3>My agent on our map</h3>
+      <div class="map">
+        <div></div>
+        <div class="col">Work with a right answer</div>
+        <div class="col">Work with no single right answer</div>
+
+        <div class="row">Must do together</div>
+        <div class="cell purple">
+          <span class="name">A person leads, AI inside</span>
+          <span class="group">Group, Week 7: tasks 1, 2 and 3</span>
+        </div>
+        <div class="cell blue">
+          <span class="name">Agents run it, a person judges</span>
+          <span class="group">Group, Week 7: task 5</span>
+        </div>
+
+        <div class="row">Either can do alone</div>
+        <div class="cell mine">
+          <span class="name">AI alone, with checks</span>
+          <span class="group">Group, Week 7: task 4, Internship Alerts on Mail</span>
+          <span class="star">★ My agent: SIN–PEK Fare Alert</span>
+        </div>
+        <div class="cell purple">
+          <span class="name">A person decides, AI alongside</span>
+          <span class="group">Group, Week 7: task 6</span>
+        </div>
+      </div>
+
+      <h3>Step 2 · Runs and checks</h3>
+      <p>The Zap is on the free plan with one trigger and one action: <strong>Google Sheets · New Spreadsheet Row</strong> → <strong>Email by Zapier · Send Outbound Email</strong>. Each time the Google Apps Script runs, it adds one row to my sheet, and the Zap emails that row to me.</p>
+      <table>
+        <tr><th>Run</th><th>Zap run (SGT)</th><th>Status in the row</th><th>Cheapest fare</th><th>Email matches Zap history?</th></tr>
+        <tr><td>1</td><td>18 Oct 2026, 03:01</td><td>No alert</td><td>CNY 2,640 · 21 Dec → 9 Jan · Air China</td><td><span class="fill">to fill</span></td></tr>
+        <tr><td>2</td><td><span class="fill">to fill</span></td><td><span class="fill">to fill</span></td><td><span class="fill">to fill</span></td><td><span class="fill">to fill</span></td></tr>
+        <tr><td>3</td><td><span class="fill">to fill</span></td><td><span class="fill">to fill</span></td><td><span class="fill">to fill</span></td><td><span class="fill">to fill</span></td></tr>
+      </table>
+      <div class="shots">
+        <figure><img data-src="/images/zap-steps.png" alt="The two-step Zap: Google Sheets trigger and Email by Zapier action"><figcaption>The Zap: one trigger, one action.</figcaption></figure>
+        <figure><img data-src="/images/zap-history.png" alt="Zap history showing the runs"><figcaption>Zap history with the runs.</figcaption></figure>
+        <figure><img data-src="/images/run-1.png" alt="Email from run 1"><figcaption>Run 1 email.</figcaption></figure>
+        <figure><img data-src="/images/run-2.png" alt="Email from run 2"><figcaption>Run 2 email.</figcaption></figure>
+        <figure><img data-src="/images/run-3.png" alt="Email from run 3"><figcaption>Run 3 email.</figcaption></figure>
+      </div>
+
+      <h3>Step 2 · Tricky case and fix</h3>
+      <div class="box"><b>What I expected, written before the test</b>I run the script with a deliberately wrong SerpApi key, so every search fails. I expect an email telling me the check failed, so that I never mistake silence for "no change in price".</div>
+      <div class="box"><b>What happened</b><span class="fill">to fill</span></div>
+      <div class="box"><b>The fix</b>When every search fails, the script now writes a row marked CHECK FAILED with the error message, so the Zap still runs and emails me the failure.</div>
+      <div class="box"><b>The tricky case, run again after the fix</b><span class="fill">to fill</span></div>
+      <div class="shots">
+        <figure><img data-src="/images/tricky-before.png" alt="Script log before the fix"><figcaption>Before the fix: the script wrote nothing, so the Zap never ran.</figcaption></figure>
+        <figure><img data-src="/images/tricky-after.png" alt="CHECK FAILED email after the fix"><figcaption>After the fix: a CHECK FAILED row and email.</figcaption></figure>
+      </div>
+
+      <h3>Q1 · Where my agent sits, and what it means for the person in the loop</h3>
+      <p><strong>(a) My quadrant.</strong> AI alone, with checks (bottom left).</p>
+      <p><strong>(b) The two questions.</strong> It is <em>work with a right answer</em>: the job is to find the cheapest round-trip economy fare across six fixed date pairs and flag it when it is below CNY 1,600 or cheaper than the last check, and every answer can be checked against Google Flights. Two checks within the same hour on 18 Oct both returned CNY 2,640 for 21 Dec to 9 Jan, while two days earlier the cheapest fare had been CNY 2,907: the answer changes from day to day, but on any given day there is one. <span class="fill">Evidence to add: the Google Flights link for run 1 showed the same fare.</span> It is <em>work that either of them can do alone</em>: in run 1 the script wrote its row and the Zap emailed it at 03:01 with no step waiting for me, and I could do the same six searches by hand in about ten minutes.</p>
+      <p><strong>(c) The person in the loop.</strong> I am the person at the gate, before any money is spent. I read the email after each 9 am run, and before acting on an ALERT I open its Google Flights link and check the fare, dates and flight; I also compare each run with its record in Zap history. The agent may search and email me on its own, and it can never book or pay, because no booking or payment app is connected. It would move up, to A person leads, AI inside, if it could book, because I would then have to sign off each booking. It would move right, to A person decides, AI alongside, if the job became choosing the best trip, trading a lower fare against an extra day at home, Daxing against Capital or a cheaper connection against a nonstop, because that has no single right answer.</p>
+      <p><strong>(d) My group's view.</strong> I agree with our group placing task 4, Internship Alerts on Mail, in AI alone: like my agent, it matches openings against fixed criteria and emails the result for a person to spot-check. I would answer the together-or-alone question differently for task 2, the VIP notification hub: flagging which messages come from VIP senders has a right answer and an agent can do it alone, so I would place it in AI alone, with checks, and treat the replies that need a person's voice as a separate job. Looking back at my own Week 7 task, news summarisation (task 3), I would now answer the right-answer question differently too: the facts have a right answer, but judging their impact on us does not, which puts that part in A person decides, AI alongside rather than A person leads, AI inside.</p>
+
+      <h3>Collaboration log</h3>
+      <ul>
+        <li><strong>What I delegated to AI:</strong> I used Claude to design the agent, write the Google Apps Script that searches Google Flights through SerpApi, draft my five-line card and the Zap's field mapping, and add this section to my copy of our group's page.</li>
+        <li><strong>What I checked and how:</strong> I checked each email against its run in Zap history and its row in my sheet, opened the Google Flights link to confirm the cheapest fare, and reread the brief to check the free-plan rules. Claude also tested the script against made-up search results before I ran it for real.</li>
+        <li><strong>An AI error I caught:</strong> Claude's first version was a four-step Zap with Code and Filter steps that only worked on Zapier's Professional trial, which breaks the brief's rule of one trigger and one action on the free plan. I caught it when checking the build against the brief, turned that Zap off and rebuilt the agent as a two-step Zap. Earlier, a storage key Claude wrote also failed the Zap's test with "Secrets must be valid UUID4s".</li>
+        <li><strong>Time and cost:</strong> about <span class="fill">__ hours</span>. Cost: nothing. Zapier's free plan with no card, SerpApi's free plan (<span class="fill">__</span> of 250 searches used this month) and Google Apps Script.</li>
+      </ul>
+
+      <h3>Reflection</h3>
+      <p>My agent fitted the job because checking six fixed date pairs every morning is tedious for me but has one right answer that the agent can find alone. It failed silently when every search failed: until the fix, a bad day produced no row and no email, which I could have read as "no change". I would add the return flight and a week's price trend to the email, and I would test the failure case before the first live run.</p>
+
+      <p class="note">Public page: no email addresses, client data or keys, and screenshots are cropped. My Zap is turned off after class on Wednesday 21 October.</p>
+    </section>
+
     <script type="module" src="/src/main.tsx"></script>
+    <script>
+      // Screenshots live in public/images; until one is uploaded, its box shows "Screenshot to add".
+      document.querySelectorAll('#ps5 img[data-src]').forEach(function (img) {
+        img.onerror = function () { img.parentNode.classList.add('missing'); img.remove(); };
+        img.src = img.getAttribute('data-src');
+      });
+    </script>
   </body>
 </html>

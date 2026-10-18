@@ -279,7 +279,7 @@ export const MatrixView: React.FC<MatrixViewProps> = ({
                 Quadrant: Bottom-Left
               </span>
               <span className="text-xs font-semibold text-teal-700 bg-teal-50 px-2 py-0.5 rounded border border-teal-200">
-                Task 4 Assigned Here
+                Tasks 4 & 7 Assigned Here
               </span>
             </div>
 

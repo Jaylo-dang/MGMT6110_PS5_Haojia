@@ -17,7 +17,7 @@ export interface TaskItem {
   whyInterdependence: string; // Why together vs alone
   humanRole: string;
   aiRole: string;
-  workspaceKey: 'gmail_priority' | 'urgent_notifications' | 'news_summary' | 'internship_alerts' | 'general';
+  workspaceKey: 'gmail_priority' | 'urgent_notifications' | 'news_summary' | 'internship_alerts' | 'flight_fares' | 'general';
 }
 
 export interface EmailItem {

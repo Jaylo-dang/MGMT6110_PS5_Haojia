@@ -14,9 +14,10 @@ import { GmailPriorityWorkspace } from './components/workspaces/GmailPriorityWor
 import { UrgentNotificationsWorkspace } from './components/workspaces/UrgentNotificationsWorkspace';
 import { NewsSummarizerWorkspace } from './components/workspaces/NewsSummarizerWorkspace';
 import { InternshipAlertsWorkspace } from './components/workspaces/InternshipAlertsWorkspace';
+import { FlightFareWorkspace } from './components/workspaces/FlightFareWorkspace';
 import { TaskDetailModal } from './components/TaskDetailModal';
 import { ClassifierModal } from './components/ClassifierModal';
-import { ArrowRight, Sparkles, Mail, MessageSquare, Newspaper, Briefcase } from 'lucide-react';
+import { ArrowRight, Sparkles, Mail, MessageSquare, Newspaper, Briefcase, Plane } from 'lucide-react';
 
 export default function App() {
   const [tasks, setTasks] = useState<TaskItem[]>(INITIAL_TASKS);
@@ -67,7 +68,7 @@ export default function App() {
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-slate-100 pb-3">
                 <div>
                   <h3 className="text-base font-bold text-slate-900">
-                    The 4 Segregated Workflows
+                    The 4 Segregated Workflows + My Problem Set 5 Agent
                   </h3>
                   <p className="text-xs text-slate-500">
                     Direct access to each interactive simulation and functional engine
@@ -78,7 +79,7 @@ export default function App() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
                 {/* Task 1 Card */}
                 <div
                   onClick={() => handleOpenWorkspace('gmail_priority')}
@@ -178,6 +179,31 @@ export default function App() {
                     <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                   </div>
                 </div>
+
+                {/* Task 7 Card: my Problem Set 5 agent */}
+                <div
+                  onClick={() => handleOpenWorkspace('flight_fares')}
+                  className="cursor-pointer group border border-teal-300 hover:border-teal-500 rounded-xl p-4 bg-teal-50/40 hover:bg-white transition-all shadow-xs flex flex-col justify-between"
+                >
+                  <div>
+                    <div className="flex items-center justify-between">
+                      <span className="w-6 h-6 rounded-full bg-teal-600 text-white text-xs font-bold flex items-center justify-center">
+                        7
+                      </span>
+                      <Plane className="w-4 h-4 text-teal-600" />
+                    </div>
+                    <h4 className="text-sm font-bold text-slate-900 group-hover:text-teal-700 mt-2 transition-colors">
+                      SIN–PEK Fare Alert
+                    </h4>
+                    <p className="text-xs text-slate-500 mt-1 line-clamp-2 leading-relaxed">
+                      My PS5 agent: the cheapest Singapore–Beijing round trip across six date pairs, emailed each morning.
+                    </p>
+                  </div>
+                  <div className="mt-3 pt-2 border-t border-slate-200/60 flex items-center justify-between text-xs font-semibold text-teal-700">
+                    <span>AI Alone, With Checks</span>
+                    <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -213,6 +239,11 @@ export default function App() {
             internships={INITIAL_INTERNSHIPS}
             onBackToMatrix={() => setCurrentTab('matrix')}
           />
+        )}
+
+        {/* Task 7 Workspace View: my Problem Set 5 agent */}
+        {currentTab === 'flight_fares' && (
+          <FlightFareWorkspace onBackToMatrix={() => setCurrentTab('matrix')} />
         )}
       </main>
 

@@ -64,6 +64,14 @@ export const Header: React.FC<HeaderProps> = ({
           >
             Internship Alerts (Task 4)
           </button>
+          <button
+            onClick={() => onSelectTab('flight_fares')}
+            className={`cursor-pointer whitespace-nowrap shrink-0 transition-colors ${
+              currentTab === 'flight_fares' ? 'text-teal-700 font-semibold' : 'hover:text-slate-900'
+            }`}
+          >
+            Flight Fares (Task 7)
+          </button>
         </nav>
 
         {/* Zone 3: 1 primary action */}

@@ -91,6 +91,21 @@ export const INITIAL_TASKS: TaskItem[] = [
     aiRole: 'Acts as thinking partner alongside, generating counter-arguments, risk matrices, and concession trade-offs.',
     workspaceKey: 'general',
   },
+  {
+    id: 'task-7',
+    number: 7,
+    title: 'SIN–PEK Fare Alert (Haojia, Problem Set 5)',
+    subtitle: 'Each morning, find the cheapest Singapore–Beijing round trip across six date pairs and email it to me',
+    quadrantId: 'alone_right_answer',
+    category: 'custom',
+    tags: ['Google Flights', 'Daily Email'],
+    archetype: 'AI alone, with checks',
+    whyAnswer: 'On any given day, the cheapest economy fare across six fixed date pairs is a fact that can be checked on Google Flights, and "below CNY 1,600 or cheaper than the last check" is a yes-or-no test.',
+    whyInterdependence: 'Either can do it alone: the agent searches and emails with no step waiting for a person, and the traveller could run the same six searches by hand in about ten minutes.',
+    humanRole: 'The traveller reads each email after the 9 am run and spot-checks the cheapest fare on its Google Flights link before booking anything. The agent can never book or pay.',
+    aiRole: 'A Google Apps Script searches Google Flights through SerpApi and writes one row to a Google Sheet; a two-step Zap (Google Sheets → Email by Zapier) emails that row.',
+    workspaceKey: 'flight_fares',
+  },
 ];
 
 export const INITIAL_EMAILS: EmailItem[] = [

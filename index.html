@@ -112,16 +112,16 @@
       <p>The Zap is on the free plan with one trigger and one action: <strong>Google Sheets · New Spreadsheet Row</strong> → <strong>Email by Zapier · Send Outbound Email</strong>. Each time the Google Apps Script runs, it adds one row to my sheet, and the Zap emails that row to me.</p>
       <table>
         <tr><th>Run</th><th>Zap run (SGT)</th><th>Status in the row</th><th>Cheapest fare</th><th>Email matches Zap history?</th></tr>
-        <tr><td>1</td><td>18 Oct 2026, 03:01</td><td>No alert</td><td>CNY 2,640 · 21 Dec → 9 Jan · Air China</td><td><span class="fill">to fill</span></td></tr>
-        <tr><td>2</td><td>18 Oct 2026, 09:33</td><td>ALERT: CNY 115 cheaper than last check</td><td>CNY 2,525 · 21 Dec → 9 Jan · Air China</td><td><span class="fill">to fill</span></td></tr>
-        <tr><td>Tricky case, after the fix</td><td>18 Oct 2026, 22:45</td><td>CHECK FAILED</td><td>none (all six searches failed)</td><td><span class="fill">to fill</span></td></tr>
+        <tr><td>1</td><td>18 Oct 2026, 03:01</td><td>No alert</td><td>CNY 2,640 · 21 Dec → 9 Jan · Air China</td><td>Yes: the 03:04 email shows the same status, fare, dates and six prices</td></tr>
+        <tr><td>2</td><td>18 Oct 2026, 09:33</td><td>ALERT: CNY 115 cheaper than last check</td><td>CNY 2,525 · 21 Dec → 9 Jan · Air China</td><td>Yes: the 09:35 email shows the same ALERT and fare</td></tr>
+        <tr><td>Tricky case, after the fix</td><td>18 Oct 2026, 22:45</td><td>CHECK FAILED</td><td>none (all six searches failed)</td><td>Yes: the 22:47 email shows CHECK FAILED and the error</td></tr>
         <tr><td>3</td><td><span class="fill">to fill</span></td><td><span class="fill">to fill</span></td><td><span class="fill">to fill</span></td><td><span class="fill">to fill</span></td></tr>
       </table>
       <div class="shots">
         <figure><img data-src="/images/zap-steps.png" alt="The two-step Zap: Google Sheets trigger and Email by Zapier action"><figcaption>The Zap: one trigger, one action.</figcaption></figure>
         <figure><img data-src="/images/zap-history.png" alt="Zap history showing the runs"><figcaption>Zap history: three successful runs on 18 Oct, at 03:01, 09:33 and 22:45 (the tricky case after the fix).</figcaption></figure>
-        <figure><img data-src="/images/run-1.png" alt="Email from run 1"><figcaption>Run 1 email.</figcaption></figure>
-        <figure><img data-src="/images/run-2.png" alt="Email from run 2"><figcaption>Run 2 email.</figcaption></figure>
+        <figure><img data-src="/images/run-1.png" alt="Email from run 1"><figcaption>Run 1 email (03:04): No alert, CNY 2,640.</figcaption></figure>
+        <figure><img data-src="/images/run-2.png" alt="Email from run 2"><figcaption>Run 2 email (09:35): ALERT, CNY 2,525.</figcaption></figure>
         <figure><img data-src="/images/run-3.png" alt="Email from run 3"><figcaption>Run 3 email.</figcaption></figure>
       </div>
 
@@ -133,7 +133,7 @@
       <div class="shots">
         <figure><img data-src="/images/tricky-before.png" alt="Script log before the fix"><figcaption>Before the fix (22:15): all six searches failed and the script wrote nothing, so the Zap never ran.</figcaption></figure>
         <figure><img data-src="/images/tricky-after.png" alt="Sheet with the CHECK FAILED row after the fix"><figcaption>After the fix (22:43): row 5 is CHECK FAILED; row 4 is run 2's ALERT.</figcaption></figure>
-        <figure><img data-src="/images/tricky-email.png" alt="CHECK FAILED email"><figcaption>The CHECK FAILED email the Zap sent at 22:45.</figcaption></figure>
+        <figure><img data-src="/images/tricky-email.png" alt="CHECK FAILED email"><figcaption>The CHECK FAILED email, received at 22:47.</figcaption></figure>
       </div>
 
       <h3>Q1 · Where my agent sits, and what it means for the person in the loop</h3>
@@ -147,7 +147,7 @@
         <li><strong>What I delegated to AI:</strong> I used Claude to design the agent, write the Google Apps Script that searches Google Flights through SerpApi, draft my five-line card and the Zap's field mapping, and add this section to my copy of our group's page.</li>
         <li><strong>What I checked and how:</strong> I checked each email against its run in Zap history and its row in my sheet, opened the Google Flights link to confirm the cheapest fare, and reread the brief to check the free-plan rules. Claude also tested the script against made-up search results before I ran it for real.</li>
         <li><strong>An AI error I caught:</strong> Claude's first version was a four-step Zap with Code and Filter steps that only worked on Zapier's Professional trial, which breaks the brief's rule of one trigger and one action on the free plan. I caught it when checking the build against the brief, turned that Zap off and rebuilt the agent as a two-step Zap. Earlier, a storage key Claude wrote also failed the Zap's test with "Secrets must be valid UUID4s".</li>
-        <li><strong>Time and cost:</strong> about <span class="fill">__ hours</span>. Cost: nothing. Zapier's free plan with no card, SerpApi's free plan (<span class="fill">__</span> of 250 searches used this month) and Google Apps Script.</li>
+        <li><strong>Time and cost:</strong> about <span class="fill">__ hours</span>. Cost: nothing. Zapier's free plan with no card, SerpApi's free plan (22 of 250 searches used by the evening of 18 Oct) and Google Apps Script.</li>
       </ul>
 
       <h3>Reflection</h3>

@@ -15,6 +15,12 @@ const DATE_PAIRS = [
   '23 Dec → 10 Jan',
 ];
 
+// Real Zap runs, newest first, copied from the "Daily fares" sheet
+const RUNS = [
+  { when: '18 Oct 2026, 09:33', status: 'ALERT', price: '2,525', note: 'CNY 115 cheaper than the last check' },
+  { when: '18 Oct 2026, 03:01', status: 'No alert', price: '2,640', note: 'Not below CNY 1,600 and same as the last check' },
+];
+
 const STEPS = [
   {
     icon: Clock,
@@ -119,19 +125,27 @@ export const FlightFareWorkspace: React.FC<FlightFareWorkspaceProps> = ({ onBack
         {/* Right: latest run and the person in the loop */}
         <div className="lg:col-span-5 space-y-4">
           <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-xs space-y-3">
-            <div className="flex items-center justify-between">
-              <div className="text-xs font-bold uppercase tracking-wider text-slate-500">First Zap run</div>
-              <span className="text-xs font-semibold text-slate-600 bg-slate-100 px-2 py-0.5 rounded">No alert</span>
+            <div className="text-xs font-bold uppercase tracking-wider text-slate-500">Zap runs so far</div>
+            {RUNS.map((run) => (
+              <div key={run.when} className="border-t border-slate-100 pt-3 first:border-0 first:pt-0">
+                <div className="flex items-center justify-between gap-2">
+                  <span className="text-2xl font-extrabold text-slate-900">CNY {run.price}</span>
+                  <span
+                    className={`text-xs font-semibold px-2 py-0.5 rounded ${
+                      run.status === 'ALERT' ? 'text-amber-900 bg-amber-100' : 'text-slate-600 bg-slate-100'
+                    }`}
+                  >
+                    {run.status}
+                  </span>
+                </div>
+                <div className="text-xs text-slate-600 mt-1">{run.note}</div>
+                <div className="text-xs text-slate-500 mt-1">{run.when}, Singapore time</div>
+              </div>
+            ))}
+            <div className="text-sm text-slate-700 flex items-center gap-2 border-t border-slate-100 pt-3">
+              <Plane className="w-4 h-4 text-teal-700 shrink-0" />
+              Both: 21 Dec → 9 Jan · Air China · nonstop to Beijing Capital
             </div>
-            <div className="flex items-baseline gap-2">
-              <span className="text-3xl font-extrabold text-slate-900">CNY 2,640</span>
-              <span className="text-xs text-slate-500">round trip, economy</span>
-            </div>
-            <div className="text-sm text-slate-700 flex items-center gap-2">
-              <Plane className="w-4 h-4 text-teal-700" />
-              21 Dec → 9 Jan · Air China · nonstop to Beijing Capital
-            </div>
-            <div className="text-xs text-slate-500">18 Oct 2026, 03:01 Singapore time</div>
           </div>
 
           <div className="p-4 bg-purple-50/70 border border-purple-200 rounded-xl space-y-1">

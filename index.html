@@ -115,14 +115,14 @@
         <tr><td>1</td><td>18 Oct 2026, 03:01</td><td>No alert</td><td>CNY 2,640 · 21 Dec → 9 Jan · Air China</td><td>Yes: the 03:04 email shows the same status, fare, dates and six prices</td></tr>
         <tr><td>2</td><td>18 Oct 2026, 09:33</td><td>ALERT: CNY 115 cheaper than last check</td><td>CNY 2,525 · 21 Dec → 9 Jan · Air China</td><td>Yes: the 09:35 email shows the same ALERT and fare</td></tr>
         <tr><td>Tricky case, after the fix</td><td>18 Oct 2026, 22:45</td><td>CHECK FAILED</td><td>none (all six searches failed)</td><td>Yes: the 22:47 email shows CHECK FAILED and the error</td></tr>
-        <tr><td>3</td><td><span class="fill">to fill</span></td><td><span class="fill">to fill</span></td><td><span class="fill">to fill</span></td><td><span class="fill">to fill</span></td></tr>
+        <tr><td>3</td><td>19 Oct 2026, 09:33</td><td>ALERT: CNY 6 cheaper than last check</td><td>CNY 2,519 · 21 Dec → 9 Jan · Air China</td><td>Yes: the 09:36 email shows the same ALERT and fare</td></tr>
       </table>
       <div class="shots">
         <figure><img data-src="/images/zap-steps.png" alt="The two-step Zap: Google Sheets trigger and Email by Zapier action"><figcaption>The Zap: one trigger, one action.</figcaption></figure>
-        <figure><img data-src="/images/zap-history.png" alt="Zap history showing the runs"><figcaption>Zap history: three successful runs on 18 Oct, at 03:01, 09:33 and 22:45 (the tricky case after the fix).</figcaption></figure>
+        <figure><img data-src="/images/zap-history.png" alt="Zap history showing the runs"><figcaption>Zap history: four successful runs, at 03:01, 09:33 and 22:45 on 18 Oct (22:45 is the tricky case after the fix) and at 09:33 on 19 Oct.</figcaption></figure>
         <figure><img data-src="/images/run-1.png" alt="Email from run 1"><figcaption>Run 1 email (03:04): No alert, CNY 2,640.</figcaption></figure>
         <figure><img data-src="/images/run-2.png" alt="Email from run 2"><figcaption>Run 2 email (09:35): ALERT, CNY 2,525.</figcaption></figure>
-        <figure><img data-src="/images/run-3.png" alt="Email from run 3"><figcaption>Run 3 email.</figcaption></figure>
+        <figure><img data-src="/images/run-3.png" alt="Email from run 3"><figcaption>Run 3 email (09:36 on 19 Oct): ALERT, CNY 2,519.</figcaption></figure>
       </div>
 
       <h3>Step 2 · Tricky case and fix</h3>
@@ -138,7 +138,7 @@
 
       <h3>Q1 · Where my agent sits, and what it means for the person in the loop</h3>
       <p><strong>(a) My quadrant.</strong> AI alone, with checks (bottom left).</p>
-      <p><strong>(b) The two questions.</strong> It is <em>work with a right answer</em>: the job is to find the cheapest round-trip economy fare across six fixed date pairs and flag it when it is below CNY 1,600 or cheaper than the last check, and every answer can be checked against Google Flights. Two checks within the same hour on 18 Oct both returned CNY 2,640 for 21 Dec to 9 Jan. Run 2 at 09:33 then marked an ALERT, because the cheapest fare for the same Air China dates had fallen to CNY 2,525, CNY 115 below the earlier check. The answer changes from day to day, but at any moment there is one, and anyone can verify it. It is <em>work that either of them can do alone</em>: in run 1 the script wrote its row and the Zap emailed it at 03:01 with no step waiting for me, and I could do the same six searches by hand in about ten minutes.</p>
+      <p><strong>(b) The two questions.</strong> It is <em>work with a right answer</em>: the job is to find the cheapest round-trip economy fare across six fixed date pairs and flag it when it is below CNY 1,600 or cheaper than the last check, and every answer can be checked against Google Flights. Two checks within the same hour on 18 Oct both returned CNY 2,640 for 21 Dec to 9 Jan. Run 2 at 09:33 then marked an ALERT, because the cheapest fare for the same Air China dates had fallen to CNY 2,525, CNY 115 below the earlier check, and run 3 on 19 Oct found CNY 2,519. The answer changes from day to day, but at any moment there is one, and anyone can verify it. It is <em>work that either of them can do alone</em>: in run 1 the script wrote its row and the Zap emailed it at 03:01 with no step waiting for me, and I could do the same six searches by hand in about ten minutes.</p>
       <p><strong>(c) The person in the loop.</strong> I am the person at the gate, before any money is spent. I read the email after each 9 am run, and before acting on an ALERT I open its Google Flights link and check the fare, dates and flight; I also compare each run with its record in Zap history. The agent may search and email me on its own, and it can never book or pay, because no booking or payment app is connected. It would move up, to A person leads, AI inside, if it could book, because I would then have to sign off each booking. It would move right, to A person decides, AI alongside, if the job became choosing the best trip, trading a lower fare against an extra day at home, Daxing against Capital or a cheaper connection against a nonstop, because that has no single right answer.</p>
       <p><strong>(d) My group's view.</strong> I agree with our group placing task 4, Internship Alerts on Mail, in AI alone: like my agent, it matches openings against fixed criteria and emails the result for a person to spot-check. I would answer the together-or-alone question differently for task 2, the VIP notification hub: flagging which messages come from VIP senders has a right answer and an agent can do it alone, so I would place it in AI alone, with checks, and treat the replies that need a person's voice as a separate job. Looking back at my own Week 7 task, news summarisation (task 3), I would now answer the right-answer question differently too: the facts have a right answer, but judging their impact on us does not, which puts that part in A person decides, AI alongside rather than A person leads, AI inside.</p>
 
@@ -151,7 +151,7 @@
       </ul>
 
       <h3>Reflection</h3>
-      <p>My agent fitted the job because checking six fixed date pairs every morning is tedious for me but has one right answer that the agent can find alone. It failed silently when every search failed: until the fix, a bad day produced no row and no email, which I could have read as "no change". I would add the return flight and a week's price trend to the email, and I would test the failure case before the first live run.</p>
+      <p>My agent fitted the job because checking six fixed date pairs every morning is tedious for me but has one right answer that the agent can find alone. It failed silently when every search failed: until the fix, a bad day produced no row and no email, which I could have read as "no change". Run 3 also showed a weakness in my rule: a drop of only CNY 6 raised an ALERT, so I would only alert on a drop of at least CNY 50, add the return flight to the email, and test the failure case before the first live run.</p>
 
       <p class="note">Public page: no email addresses, client data or keys, and screenshots are cropped. My Zap is turned off after class on Wednesday 21 October.</p>
     </section>

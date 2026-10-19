@@ -17,6 +17,7 @@ const DATE_PAIRS = [
 
 // Real Zap runs, newest first, copied from the "Daily fares" sheet
 const RUNS = [
+  { when: '19 Oct 2026, 09:33', status: 'ALERT', price: '2,519', note: 'CNY 6 cheaper than the last check' },
   { when: '18 Oct 2026, 09:33', status: 'ALERT', price: '2,525', note: 'CNY 115 cheaper than the last check' },
   { when: '18 Oct 2026, 03:01', status: 'No alert', price: '2,640', note: 'Not below CNY 1,600 and same as the last check' },
 ];
@@ -144,7 +145,7 @@ export const FlightFareWorkspace: React.FC<FlightFareWorkspaceProps> = ({ onBack
             ))}
             <div className="text-sm text-slate-700 flex items-center gap-2 border-t border-slate-100 pt-3">
               <Plane className="w-4 h-4 text-teal-700 shrink-0" />
-              Both: 21 Dec → 9 Jan · Air China · nonstop to Beijing Capital
+              All three: 21 Dec → 9 Jan · Air China · nonstop to Beijing Capital
             </div>
           </div>
 
